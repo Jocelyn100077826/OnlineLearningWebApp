@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import AdminLayout from '../components/AdminLayout';
 import StudentLayout from '../components/StudentLayout';
 import {Grid, Paper} from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -9,26 +8,7 @@ import Box from "@mui/material/Box";
 
 const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
-const testData = [
-    {
-        id:"sub12334234348ddjwm2312",
-        class: "cls84783dkem23u429",
-        semester:"2022-1",
-        name:"History",
-        teacher:"tch19829319ws9q2i9e21",
-        students:["stu34290349289dklscow93","stu81723jdd399920os"]
-    },
-    {
-        id:"sub12334234342019032wm2312",
-        class: "cls84783dkem23u429",
-        semester:"2022-1",
-        name:"English",
-        teacher:"tch1982923201kddws9q2i9e21",
-        students:["stu34290349289dklscow93","stu81723jdd399920os"]
-    },
-]
-
-const Subject = redux(
+const QuizEditor = redux(
     ['nightMode'],
     ['setNightMode'],
 )(props => {
@@ -39,7 +19,6 @@ const Subject = redux(
     const [isTeacher,setIsTeacher] = useState(false);
     const [isAdmin,setIsAdmin] = useState(false);
     const [initialized,setInitialized] = useState(false);
-    const [subjects,setSubjects] = useState(testData);
 
     useEffect(() => {
         setInitialized(true);
@@ -81,38 +60,16 @@ const Subject = redux(
                                     hour12: true,
                                 })}
                             </Typography>
-                            <Typography style={{fontSize:21,color:nightMode?"#ffffff":"#676767"}}>My Subjects</Typography>
+                            <Typography style={{fontSize:21,color:nightMode?"#ffffff":"#676767"}}>My Grades</Typography>
                         </Grid>
                         <Grid item  md={12} xs={12}>
                             <Paper style={PaperStyle}>
-                                <Typography style={{color:nightMode?"#ffffff":"#676767"}}>Subjects</Typography>
-                                <Grid container spacing={4}>
-                                    {
-                                        _.map(subjects,(v,i)=>(
-                                            <Grid item xs={6} md={3} key={i} onClick={()=>{}}>
-                                                <Paper style={{backgroundColor:"grey",padding:10}}>
-                                                    <Typography style={{color:nightMode?"#ffffff":"#676767",fontSize:10}}>{v.id}</Typography>
-                                                    <Typography style={{color:nightMode?"#ffffff":"#676767"}}>{v.name}</Typography>
-                                                </Paper>
-                                            </Grid>
-                                        ))
-                                    }
-                                </Grid>
+                                <Typography style={{color:nightMode?"#ffffff":"#676767"}}>Grades</Typography>
                             </Paper>
                         </Grid>
                     </Grid>
                 </Grid>
             </StudentLayout>
-        )
-    }else if(isTeacher){
-        return(
-            <AdminLayout isAdmin={false}>
-            </AdminLayout>
-        )
-    }else if(isAdmin){
-        return(
-            <AdminLayout isAdmin={true}>
-            </AdminLayout>
         )
     }
 
@@ -122,4 +79,4 @@ const Subject = redux(
         </Box>
     )
 })
-export default Subject;
+export default QuizEditor;
